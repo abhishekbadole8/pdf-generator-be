@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Generator</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -24,7 +23,7 @@
         </div>
 
         <div class="header-col-2">
-            <img src="./company-logo.png" alt="Levitation Infotech Logo">
+            <img src="{{companyLogo}}" alt="Levitation Infotech Logo">
 
             <div class="company-title">
                 <h6>Levitation</h6>
@@ -39,12 +38,12 @@
             <div class="traveller-details">
                 <h4>Traveller Name</h4>
 
-                <p class="person-name">Person_name</p>
+                <p class="person-name">{{name}}</p>
                 <p class="person-email">example@email.com</p>
             </div>
 
             <div class="date">
-                <p>Date: 12/04/23</p>
+                <p>Date: {{date}}</p>
             </div>
         </div>
 
@@ -60,43 +59,20 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>{Product 1}</td>
-                    <td>32</td>
-                    <td>120</td>
-                    <td>USD 100</td>
-                </tr>
-                <tr>
-                    <td>{Product 2}</td>
-                    <td>32</td>
-                    <td>120</td>
-                    <td>USD 100</td>
-                </tr>
-                <tr>
-                    <td>{Product 3}</td>
-                    <td>32</td>
-                    <td>120</td>
-                    <td>USD 100</td>
-                </tr>
-                <tr>
-                    <td>{Product 4}</td>
-                    <td>32</td>
-                    <td>120</td>
-                    <td>USD 100</td>
-                </tr>
+                {{cartItems}}
             </tbody>
         </table>
 
         <div class="total-charges-container">
             <div class="total-box">
-                <p class="total-charges">Total Charges: <span>$400</span></p>
-                <p class="total-gst">GST (18%): <span>$72</span></p>
-                <p class="total-amount">Total Amount: <span class="amount">₹ 472</span></p>
+                <p class="total-charges">Total Charges: <span>{{totalPrice}}</span></p>
+                <p class="total-gst">GST (18%): <span>{{gstAmount}}</span></p>
+                <p class="total-amount">Total Amount: <span class="amount">{{grandTotal}}</span></p>
             </div>
         </div>
         
 
-        <p class="date-field">Date: <span class="date-value">12/04/23</span></p>
+        <p class="date-field">Date: <span class="date-value">{{date}}</span></p>
 
         <div class="footer">
             <p>We are pleased to provide any further information you may require and look forward to assisting with
