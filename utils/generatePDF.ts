@@ -15,7 +15,7 @@ export const generatePDF = async (
     // File's path
     const htmlPath = path.join(pdfFolderPath, "index.html");
     const cssPath = path.join(pdfFolderPath, "style.css");
-    const logoPath = path.join(pdfFolderPath, "company-log.png");
+    const logoPath = path.join(pdfFolderPath, "company-logo.png");
 
     // Read HTML and CSS files from the file system
     let htmlContent = fs.readFileSync(htmlPath, "utf-8");
@@ -50,16 +50,18 @@ export const generatePDF = async (
       .replace("{{date}}", `${date}`)
       .replace(
         "{{companyLogo}}",
-        `<img src="file://${logoPath}" alt="Company Logo">`
+        `data:image/png;base64,${fs.readFileSync(logoPath).toString("base64")}`
       )
       .replace("{{cartItems}}", itemsHtml)
       .replace("{{totalPrice}}", `INR ${final_total_price}`)
       .replace("{{gstAmount}}", `INR ${gst_total}`)
       .replace("{{grandTotal}}", `INR ${grandTotal}`);
 
-
     // Puppeteer launch
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox"],
+    });
     const page = await browser.newPage();
 
     await page.setContent(`

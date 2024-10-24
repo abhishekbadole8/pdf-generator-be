@@ -24,9 +24,8 @@ const addProducts = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Set response headers for PDF
-    res.setHeader("Content-Type", "application/pdf");
     res.setHeader("Content-Disposition", 'attachment; filename="products.pdf"');
-console.log(pdfBuffer);
+    res.setHeader("Content-Type", "application/pdf");
 
     res.send(pdfBuffer);
   } catch (error) {
